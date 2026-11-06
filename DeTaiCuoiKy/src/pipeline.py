@@ -5,8 +5,9 @@ from math import floor
 from imblearn.over_sampling import SMOTE
 from imblearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
-from sklearn.compose import make_column_selector
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
+
+CATEGORICAL = ["proto", "service"]
 
 
 def choose_cv_and_k(min_class_count, max_folds=5):
@@ -19,32 +20,40 @@ def choose_cv_and_k(min_class_count, max_folds=5):
     return cv, k_neighbors
 
 
-def make_pipeline(model, scale=False, sampler=None, drop_cols=None, feature_columns=None):
-    """Tạo ColumnTransformer, sampler tùy chọn và model cuối pipeline."""
-    return make_pipeline_from_columns(model, feature_columns, scale=scale, sampler=sampler, drop_cols=drop_cols)
-
-
-def make_pipeline_from_columns(model, feature_columns, scale=False, sampler=None, drop_cols=None):
-    """Tạo pipeline từ danh sách cột đã biết, phù hợp trước khi fit."""
-    drop_cols = set(drop_cols or [])
-    # Chọn cột khi fit để hàm dùng được trước khi biết schema.
-    def categorical_cols(frame):
-        return [c for c in frame.columns if c in {"proto", "service"} and c not in drop_cols]
-
-    def numeric_cols(frame):
-        return [c for c in make_column_selector(dtype_include="number")(frame) if c not in drop_cols]
+def make_pipeline(
+    model,
+    feature_columns,
+    scale=False,
+    sampler=None,
+    k_neighbors=None,
+    sampling_strategy="auto",
+    random_state=42,
+):
+    """Tạo pipeline có danh sách cột tường minh và có thể serialize bằng joblib."""
+    cat_cols = [c for c in feature_columns if c in CATEGORICAL]
+    num_cols = [c for c in feature_columns if c not in CATEGORICAL]
     numeric_step = StandardScaler() if scale else "passthrough"
     transformer = ColumnTransformer(
         transformers=[
-            ("categorical", OneHotEncoder(handle_unknown="ignore"), categorical_cols),
-            ("numeric", numeric_step, numeric_cols),
+            ("categorical", OneHotEncoder(handle_unknown="ignore"), cat_cols),
+            ("numeric", numeric_step, num_cols),
         ],
         remainder="drop",
     )
     steps = [("preprocess", transformer)]
     if sampler == "smote":
-        # k sẽ được thay bằng giá trị tính từ train trong notebook trước khi fit.
-        steps.append(("sampler", SMOTE(random_state=42, k_neighbors=1)))
+        if k_neighbors is None:
+            raise ValueError("k_neighbors phải được cung cấp khi sampler='smote'.")
+        steps.append(
+            (
+                "sampler",
+                SMOTE(
+                    k_neighbors=k_neighbors,
+                    sampling_strategy=sampling_strategy,
+                    random_state=random_state,
+                ),
+            )
+        )
     elif sampler is not None:
         raise ValueError("sampler chỉ nhận None hoặc 'smote'.")
     steps.append(("model", model))
