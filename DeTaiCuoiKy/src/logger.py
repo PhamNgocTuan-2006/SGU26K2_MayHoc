@@ -66,3 +66,10 @@ def mark_invalid(run_id, reason, log_path=LOG_PATH):
     old = "" if pd.isna(data.at[index, "notes"]) else str(data.at[index, "notes"])
     data.at[index, "notes"] = f"{old}; {note}" if old else note
     data.to_csv(path, index=False, encoding="utf-8-sig")
+
+
+def find_duplicate_runs(log_path=LOG_PATH):
+    """Tìm các dòng trùng khóa thực nghiệm và Macro-F1."""
+    data = pd.read_csv(log_path, encoding="utf-8-sig")
+    keys = ["stage", "model", "feature_set", "imbalance_method", "macro_f1"]
+    return data[data.duplicated(keys, keep=False)].sort_values(keys + ["date"])

@@ -1,0 +1,5 @@
+Thời gian: 2026-11-07T21:58:39.610201
+Mô hình được chọn: RandomForest_tuned
+Macro-F1 CV: 0.957256
+Lý do: Macro-F1 CV cao nhất và chênh mô hình kế tiếp=0.008560.
+Quyết định cố định trước khi dùng test.
