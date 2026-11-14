@@ -1,0 +1,10 @@
+,Accuracy Train,Accuracy Validation,F1 macro,Thời gian huấn luyện
+Gradient Boosting,64.0,54.62,57.57,63.19
+Random Forest,93.81,51.32,57.2,5.38
+Extra Trees,93.81,50.21,55.33,2.38
+Decision Tree,93.81,36.7,45.7,0.33
+Naive Bayes,34.13,33.75,26.18,0.01
+SVC,30.05,29.69,7.8,8.96
+AdaBoost,27.33,26.81,13.65,1.16
+KNN,47.86,23.23,28.0,0.02
+MLP,21.51,21.15,19.34,1.11
