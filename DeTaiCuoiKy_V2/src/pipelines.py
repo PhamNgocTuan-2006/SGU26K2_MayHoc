@@ -16,3 +16,11 @@ def get_baselines():
         "logreg": scaled(LogisticRegression(max_iter=1000, random_state=RANDOM_STATE)),
         "tree_depth3": DecisionTreeClassifier(max_depth=3, random_state=RANDOM_STATE),
     }
+
+def get_classic():
+    return {
+        "knn_k5": scaled(KNeighborsClassifier(n_neighbors=5, n_jobs=-1)),
+        "decision_tree": DecisionTreeClassifier(random_state=RANDOM_STATE),
+        "random_forest": RandomForestClassifier(
+            n_estimators=200, n_jobs=-1, random_state=RANDOM_STATE),
+    }
