@@ -31,27 +31,42 @@ def _final_estimator(model):
         return model.steps[-1][1]
     return model
 
+NOISE = {"n_jobs", "verbose", "random_state", "warm_start"}
+KEY = {
+    "n_neighbors", "n_estimators", "max_depth", "min_samples_leaf",
+    "max_features", "class_weight", "C", "weights"
+}
+
 def _params_str(model):
-    """Chỉ liệt kê tham số khác mặc định để chuỗi log gọn gàng."""
+    # Lấy estimator cuối cùng (nếu là Pipeline thì lấy bước model chính)
     est = _final_estimator(model)
+    cur = est.get_params(deep=False)
+
+    # Lấy tham số mặc định của lớp mô hình để so sánh
     try:
-        current_params = est.get_params(deep=False)
-        default_params = type(est)().get_params(deep=False)
-        
-        diff = {}
-        for key, value in current_params.items():
-            if key not in default_params or value != default_params[key]:
-                diff[key] = value
+        default = type(est)().get_params(deep=False)
     except Exception:
-        diff = est.get_params(deep=False)
-        
-    param_list = []
-    for k, v in diff.items():
-        param_list.append(f"{k}={v!r}")
-        
-    if len(param_list) == 0:
+        default = {}
+
+    # Lọc các tham số quan trọng hoặc khác giá trị mặc định, bỏ qua tham số nhiễu
+    selected_params = {}
+    for k, v in cur.items():
+        if k in NOISE:
+            continue
+        is_key = k in KEY
+        is_new_param = k not in default
+        is_changed = (k in default) and (v != default[k])
+        if is_key or is_new_param or is_changed:
+            selected_params[k] = v
+
+    # Ghép thành chuỗi hiển thị
+    parts = []
+    for k, v in selected_params.items():
+        parts.append(f"{k}={v!r}")
+
+    if len(parts) == 0:
         return "(mac dinh)"
-    return ", ".join(param_list)
+    return ", ".join(parts)
 
 class ExperimentLogger:
     def __init__(self, author=None):
