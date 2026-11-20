@@ -1,0 +1,7 @@
+,gia_tri
+macro_f1,0.9951
+balanced_acc,0.9957
+mcc,0.9967
+accuracy,0.9986
+weighted_f1,0.9986
+fit_time_s,55.9308
