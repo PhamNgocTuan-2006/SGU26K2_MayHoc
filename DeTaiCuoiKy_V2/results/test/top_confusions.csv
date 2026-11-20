@@ -1,0 +1,13 @@
+lop_that,lop_du_doan,so_mau
+ARP_poisioning,Thing_Speak,11
+Thing_Speak,ARP_poisioning,8
+NMAP_UDP_SCAN,DDOS_Slowloris,2
+ARP_poisioning,NMAP_TCP_scan,2
+NMAP_UDP_SCAN,Thing_Speak,2
+ARP_poisioning,DDOS_Slowloris,1
+MQTT_Publish,Thing_Speak,1
+NMAP_UDP_SCAN,ARP_poisioning,1
+NMAP_XMAS_TREE_SCAN,ARP_poisioning,1
+Thing_Speak,DDOS_Slowloris,1
+Thing_Speak,NMAP_UDP_SCAN,1
+Wipro_bulb,Thing_Speak,1
