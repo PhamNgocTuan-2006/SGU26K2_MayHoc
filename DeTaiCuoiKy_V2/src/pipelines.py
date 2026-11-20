@@ -41,3 +41,8 @@ def get_xgb():      # tuy chon, chi dung neu da cai xgboost
     return {"xgb_default": XGBClassifier(
         n_estimators=150, max_depth=6, learning_rate=0.1, tree_method="hist",
         objective="multi:softprob", n_jobs=-1, random_state=RANDOM_STATE)}
+def get_final():
+    # mo hinh cuoi da khoa, chon theo quy tac trong README
+    return HistGradientBoostingClassifier(
+        class_weight="balanced", early_stopping=False, random_state=RANDOM_STATE
+    )
