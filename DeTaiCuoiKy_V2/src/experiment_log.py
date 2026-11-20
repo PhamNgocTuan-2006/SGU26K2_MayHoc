@@ -144,7 +144,13 @@ def export_excel(out=None):
         raise FileNotFoundError("Chưa có file log_*.csv nào để xuất Excel.")
         
     df_list = [pd.read_csv(f) for f in files]
-    df = pd.concat(df_list, ignore_index=True)
+    df = pd.concat([pd.read_csv(f) for f in files], ignore_index=True)
+    # them ten nguoi chay vao ma thi nghiem de khong trung giua cac thanh vien
+    df["Exp ID"] = df["Nguoi chay"] + "-" + df["Exp ID"]
+    # bo dong trung do chay lai cung cau hinh
+    khoa = ["Nguoi chay", "Ten mo hinh", "Tham so (Hyperparameters)",
+            "Chien luoc xu ly mat can bang", "Random Seed"]
+    df = df.drop_duplicates(subset=khoa, keep="last")
     df = df.sort_values(["Thoi gian ghi nhan", "Exp ID"]).reset_index(drop=True)
     
     df.to_excel(out, sheet_name="Experiment Log", index=False)
