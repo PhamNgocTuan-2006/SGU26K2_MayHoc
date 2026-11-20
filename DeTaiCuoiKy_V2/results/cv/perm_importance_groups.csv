@@ -1,0 +1,10 @@
+nhom,so_cot,giam_macro_f1_tb,std
+payload,11,0.1497,0.0117
+cong,2,0.1357,0.0158
+kich_thuoc_header,4,0.1294,0.0013
+co_TCP,9,0.1191,0.0081
+so_goi_va_luong,13,0.1157,0.0138
+thoi_gian_giua_goi_IAT,10,0.0678,0.0085
+proto_service,13,0.0277,0.0056
+cua_so_TCP,3,0.0217,0.0029
+active_idle,5,0.0016,0.0035
