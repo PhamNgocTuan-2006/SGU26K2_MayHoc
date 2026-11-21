@@ -96,3 +96,33 @@ def ci_report(y_true, y_pred, labels, n_boot=1000, seed=42, alpha=0.05):
     }).round(4)
 
     return macro, table
+from scipy import stats
+
+
+def clopper_pearson(k, n, alpha=0.05):
+    if n == 0:
+        return np.nan, np.nan
+    thap = 0.0 if k == 0 else stats.beta.ppf(alpha / 2, k, n - k + 1)
+    cao = 1.0 if k == n else stats.beta.ppf(1 - alpha / 2, k + 1, n - k)
+    return thap, cao
+
+
+def exact_ci_table(y_true, y_pred, labels, alpha=0.05):
+    """Khoang tin cay chinh xac Clopper Pearson cho Recall va Precision tung lop."""
+    y_true = np.asarray(y_true).astype(int)
+    y_pred = np.asarray(y_pred).astype(int)
+    k = len(labels)
+    cm = np.bincount(y_true * k + y_pred, minlength=k * k).reshape(k, k)
+    rows = []
+    for c in range(k):
+        tp = int(cm[c, c])
+        sup = int(cm[c].sum())
+        pred = int(cm[:, c].sum())
+        r_lo, r_hi = clopper_pearson(tp, sup, alpha)
+        p_lo, p_hi = clopper_pearson(tp, pred, alpha)
+        rows.append({
+            "lop": labels[c], "tp": tp, "so_mau_test": sup, "so_du_doan": pred,
+            "recall_exact_thap": r_lo, "recall_exact_cao": r_hi,
+            "precision_exact_thap": p_lo, "precision_exact_cao": p_hi,
+        })
+    return pd.DataFrame(rows).round(4)
