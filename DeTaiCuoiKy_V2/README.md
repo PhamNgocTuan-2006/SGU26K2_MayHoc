@@ -197,7 +197,6 @@ Cell đánh giá trên tập test trong `07_final_eval.ipynb` được chạy ha
 
 ## 14. Phân công
 
-Kiểm tra và sửa lại cho đúng thực tế trước khi nộp.
 
 | Thành viên | Nội dung |
 |---|---|
