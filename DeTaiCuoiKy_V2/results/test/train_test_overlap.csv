@@ -1,0 +1,13 @@
+lop,so_mau_test,so_mau_co_ban_sao_trong_train,ti_le
+ARP_poisioning,1525,0,0.0
+DDOS_Slowloris,107,0,0.0
+DOS_SYN_Hping,18018,0,0.0
+MQTT_Publish,828,0,0.0
+Metasploit_Brute_Force_SSH,7,0,0.0
+NMAP_FIN_SCAN,6,0,0.0
+NMAP_OS_DETECTION,400,0,0.0
+NMAP_TCP_scan,200,0,0.0
+NMAP_UDP_SCAN,517,0,0.0
+NMAP_XMAS_TREE_SCAN,402,0,0.0
+Thing_Speak,1531,0,0.0
+Wipro_bulb,44,0,0.0
