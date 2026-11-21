@@ -204,8 +204,6 @@ Kiểm tra và sửa lại cho đúng thực tế trước khi nộp.
 | tuan | Hạ tầng dùng chung, tiền xử lý, mô hình cổ điển, tuning Random Forest, `class_weight` trên RF, CV lặp cho các ứng viên cuối, chọn và khóa mô hình |
 | thai | MLP và HGB mặc định, tuning HGB, một phần thí nghiệm mất cân bằng (N1 trên HGB, N2 đến N4 trên RF) |
 | bao | HGB cố định cấu hình tuned với các biến thể N0 đến N4, tuning MLP, XGBoost |
-| [điền tên] | Đánh giá cuối trên test, phân tích lỗi, permutation importance, ablation, đường cong học, demo Streamlit |
+| khanh | Đánh giá cuối trên test, phân tích lỗi, permutation importance, ablation, đường cong học, demo Streamlit |
 
-## 15. Sử dụng công cụ AI
 
-Công cụ AI hỗ trợ: Claude của Anthropic, dùng để đề xuất kế hoạch thực nghiệm, viết khung mã nguồn và hỗ trợ đọc kết quả. Các thành viên tự chạy mọi thí nghiệm và chịu trách nhiệm về tính trung thực của kết quả.
