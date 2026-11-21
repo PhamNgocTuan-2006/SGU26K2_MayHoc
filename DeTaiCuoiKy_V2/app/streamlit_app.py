@@ -212,10 +212,18 @@ with tab2:
         st.caption(f"Khoảng tin cậy 95% của Macro-F1 theo bootstrap: "
                    f"từ {ci['ci_thap']:.4f} đến {ci['ci_cao']:.4f}.")
     bang = doc_csv(TEST_DIR / "final_per_class_ci.csv")
+    chinh_xac = doc_csv(TEST_DIR / "final_per_class_exact_ci.csv")
     if bang is not None:
+        if chinh_xac is not None:
+            bang = bang.merge(
+                chinh_xac[["lop", "recall_exact_thap", "recall_exact_cao"]], on="lop")
         st.subheader("Precision và Recall từng lớp")
         st.dataframe(bang)
-        st.caption("Hai lớp NMAP_FIN_SCAN và Metasploit_SSH chỉ có vài mẫu test nên khoảng tin cậy rất rộng.")
+        st.caption(
+            "Cột recall_exact là khoảng tin cậy chính xác Clopper Pearson. "
+            "Hai lớp NMAP_FIN_SCAN và Metasploit_SSH chỉ có 6 đến 7 mẫu test nên khoảng này rất rộng, "
+            "trong khi bootstrap cho kết quả suy biến bằng 1."
+        )
     anh = FIG_DIR / "final_confusion_matrix.png"
     if anh.exists():
         st.subheader("Ma trận nhầm lẫn")
