@@ -1,0 +1,5 @@
+bien_the,macro_f1,std,chenh_so_voi_day_du,t,p,recall_c4,recall_c5,recall_c11
+hgb_N1_balanced,0.9633,0.0127,0.0,0.0,1.0,0.727,0.82,0.966
+final_bo_cong,0.9539,0.0128,-0.0094,-3.86,0.018,0.727,0.82,0.96
+final_bo_proto_service,0.9656,0.0124,0.0024,1.17,0.308,0.727,0.82,0.96
+final_bo_cong_va_proto_service,0.9495,0.0125,-0.0138,-18.04,0.0,0.727,0.82,0.931
