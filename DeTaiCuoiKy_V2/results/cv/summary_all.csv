@@ -1,21 +1,35 @@
 Nguoi chay,Ten mo hinh,Chien luoc,Macro-F1 (TB),Macro-F1 (std),Balanced Acc (TB),Recall c4 Metasploit_SSH,Recall c5 NMAP_FIN_SCAN,Recall c11 Wipro_bulb,Fit time (s)
 bao,hgbT_N2_under,N2 undersampling,0.9688,0.0126,0.9565,0.76,0.82,0.9429,10.2175
+tuan,hgb_N1_balanced_rep3,CV lap 3x5,0.9661,0.0143,0.9558,0.7222,0.82,0.9657,50.5291
+Khanh,final_bo_proto_service,class_weight=balanced,0.9656,0.0124,0.9558,0.7267,0.82,0.96,38.0531
+Khanh,rf_bo_nhom_active_idle,N0 khong xu ly,0.9649,0.0127,0.9527,0.76,0.82,0.9143,2.0436
 thai,rf_N2_under,N2 undersampling,0.9645,0.0142,0.9526,0.76,0.82,0.9143,0.9627
+tuan,xgb_default_rep3,CV lap 3x5,0.9644,0.0175,0.9568,0.7578,0.82,0.96,23.6387
+Khanh,rf_bo_nhom_kich_thuoc_header,N0 khong xu ly,0.9637,0.014,0.951,0.76,0.82,0.9029,2.2571
 thai,hgb_N1_balanced,class_weight=balanced,0.9633,0.0127,0.9561,0.7267,0.82,0.9657,36.768
-tuan,random_forest_tuned,N0 khong xu ly,0.963,0.0131,0.9503,0.76,0.82,0.8971,1.3983
 tuan,rf_d10_cw_None,N0 khong xu ly,0.963,0.0131,0.9503,0.76,0.82,0.8971,1.2863
+tuan,random_forest_tuned,N0 khong xu ly,0.963,0.0131,0.9503,0.76,0.82,0.8971,1.3983
+Khanh,rf_bo_nhom_thoi_gian_giua_goi_IAT,N0 khong xu ly,0.9627,0.013,0.9495,0.76,0.82,0.8914,1.7819
+Khanh,rf_bo_nhom_proto_service,N0 khong xu ly,0.9621,0.0138,0.9492,0.76,0.82,0.8971,2.3191
+Khanh,rf_bo_nhom_so_goi_va_luong,N0 khong xu ly,0.9618,0.0134,0.9487,0.7267,0.82,0.9086,2.0124
 tuan,random_forest,N0 khong xu ly,0.9617,0.0129,0.9541,0.76,0.82,0.9257,1.7465
 bao,xgb_default,N0 khong xu ly,0.9614,0.0179,0.9573,0.76,0.82,0.9657,11.5061
 tuan,random_forest_grid_best,N0 khong xu ly,0.961,0.0131,0.953,0.76,0.82,0.9143,4.6499
 thai,hgb_N4_under_smote,N4 undersampling + SMOTE,0.9608,0.0146,0.9604,0.7933,0.82,0.9543,19.771
+Khanh,rf_bo_nhom_cua_so_TCP,N0 khong xu ly,0.9607,0.0132,0.946,0.7267,0.82,0.8743,2.3699
 thai,hgb_N3_smote,N3 SMOTE,0.9605,0.0144,0.9571,0.76,0.82,0.9543,27.9002
-bao,hgbT_N0,N0 khong xu ly,0.9601,0.0176,0.9557,0.76,0.82,0.9486,11.2196
 thai,hgb_tuned,N0 khong xu ly,0.9601,0.0176,0.9557,0.76,0.82,0.9486,21.2511
+bao,hgbT_N0,N0 khong xu ly,0.9601,0.0176,0.9557,0.76,0.82,0.9486,11.2196
 bao,hgbT_N4_under_smote,N4 undersampling + SMOTE,0.9596,0.0165,0.9596,0.7933,0.82,0.9486,12.9691
+Khanh,rf_bo_nhom_payload,N0 khong xu ly,0.9591,0.0112,0.9423,0.6933,0.82,0.88,2.115
 bao,hgbT_N3_smote,N3 SMOTE,0.9577,0.0122,0.9589,0.7933,0.82,0.9486,21.6057
+Khanh,rf_bo_nhom_cong,N0 khong xu ly,0.9568,0.0125,0.9438,0.76,0.82,0.8971,2.7361
+Khanh,rf_bo_nhom_co_TCP,N0 khong xu ly,0.9555,0.0161,0.9471,0.76,0.82,0.8914,2.0909
 tuan,rf_d10_cw_sqrt,class_weight=sqrt,0.9543,0.0189,0.9523,0.76,0.82,0.9143,1.6746
+Khanh,final_bo_cong,class_weight=balanced,0.9539,0.0128,0.9502,0.7267,0.82,0.96,43.5602
 bao,hgbT_N1_balanced,class_weight=balanced,0.9516,0.0224,0.9567,0.76,0.82,0.9486,35.6963
 tuan,rf_d10_cw_balanced_subsample,class_weight=balanced_subsample,0.9509,0.0148,0.9546,0.76,0.82,0.96,1.8505
+Khanh,final_bo_cong_va_proto_service,class_weight=balanced,0.9495,0.0125,0.9451,0.7267,0.82,0.9314,36.3643
 tuan,knn_k5,N0 khong xu ly,0.9467,0.0109,0.9361,0.7267,0.82,0.7943,0.2201
 thai,rf_N3_smote,N3 SMOTE,0.9462,0.0154,0.9541,0.76,0.82,0.96,3.6323
 thai,rf_N4_under_smote,N4 undersampling + SMOTE,0.9455,0.0227,0.9536,0.76,0.82,0.9543,1.9264
