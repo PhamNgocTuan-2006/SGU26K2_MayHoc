@@ -91,6 +91,7 @@ pip install -r requirements.txt
 | 14 | `09_summary_all.ipynb` | Bảng tổng hợp của cả nhóm, kiểm định cặp giữa các ứng viên | `summary_all.csv` |
 | 15 | `10_finalists_repeated_cv.ipynb` | CV lặp 3×5 cho hai ứng viên cuối, Precision/Recall từng lớp | `*_rep3.csv`, `finalists_per_class.csv` |
 | 16 | `07_final_eval.ipynb` | Huấn luyện mô hình cuối, đánh giá test, bootstrap CI | `results/test/final_*.csv`, mô hình |
+| 16b| `12_supplementary_test_comparison.ipynb` | Đối chiếu bổ sung 3 mô hình trên test, kiểm định cặp với mô hình đã khóa | `supp_*.csv` |
 | 17 | `07e_exact_ci.ipynb` | Khoảng tin cậy chính xác theo lớp | `final_per_class_exact_ci.csv` |
 | 18 | `08_error_analysis.ipynb` | Phân tích lỗi trên test, so sánh CV với test | `top_confusions.csv` |
 | 19 | `08b_train_test_overlap.ipynb` | Kiểm tra bản sao đặc trưng giữa train và test | `train_test_overlap.csv` |
@@ -116,7 +117,10 @@ Các notebook phụ:
 
 ## 7. Quy tắc làm việc nhóm
 
-1. Tập test (`X_test`, `y_test`) chỉ dùng cho: (a) đánh giá cuối đúng một lần trong `07_final_eval.ipynb`, (b) phân tích và minh họa sau khi đã khóa mô hình (`07d`, `08b`, `08c`). **Tuyệt đối không dùng để chọn hay chỉnh mô hình.**
+1. 1. Tập test (X_test, y_test) chỉ dùng cho: (a) đánh giá cuối đúng một lần trong 07_final_eval.ipynb,
+   (b) phân tích và minh họa sau khi đã khóa mô hình (07d, 08b, 08c),
+   (c) đối chiếu bổ sung một số mô hình khác sau khi đã khóa (12_supplementary_test_comparison.ipynb),
+   chỉ để báo cáo. Tuyệt đối không dùng để chọn hay chỉnh mô hình.
 2. Mọi mô hình được đánh giá bằng `cv_evaluate` thông qua `ExperimentLogger`, tên mô hình là duy nhất (file kết quả CV lưu theo tên, đặt trùng sẽ ghi đè).
 3. Scaler, SMOTE, PCA luôn nằm trong Pipeline.
 4. Mỗi người làm trên nhánh riêng, tạo Pull Request vào `main`, người phụ trách hạ tầng duyệt và merge. Sau mỗi lần merge, chạy `git pull origin main` trước khi làm tiếp.
@@ -139,7 +143,8 @@ Kết quả áp dụng:
 - Đã kiểm tra Precision từng lớp trên CV: Metasploit_SSH 0,808, NMAP_FIN_SCAN 0,900, không có suy giảm ở lớp hiếm.
 - Dự phòng: `xgb_default`, Macro-F1 CV 0,9644 ± 0,0175.
 - Phát hiện kèm theo: HistGradientBoosting với `learning_rate=0,1` và `l2_regularization=0` không ổn định (Macro-F1 khoảng 0,27, thấp hơn cả bộ phân loại luôn đoán lớp đa số). Hạ learning rate xuống 0,03 hoặc thêm `l2_regularization` đều khắc phục.
-
+- Sau khi khóa, ba mô hình khác (hgbT_N2_under, random_forest_tuned, xgb_default) được chấm trên test chỉ để đối chiếu.
+  Mô hình đã khóa không thay đổi dựa trên kết quả này.
 ## 9. Kết quả chính
 
 | Chỉ số | CV lặp 3×5 (train) | Test |
