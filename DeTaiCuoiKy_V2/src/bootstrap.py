@@ -126,3 +126,41 @@ def exact_ci_table(y_true, y_pred, labels, alpha=0.05):
             "precision_exact_thap": p_lo, "precision_exact_cao": p_hi,
         })
     return pd.DataFrame(rows).round(4)
+def paired_bootstrap_diff(y_true, pred_a, pred_b, n_classes=12, n_boot=1000, seed=42, alpha=0.05):
+    """Khoang tin cay bootstrap cho hieu Macro-F1 giua hai mo hinh tren cung tap test.
+    Cung mot bo chi so lay lai cho ca hai mo hinh. Hieu duoc tinh la B tru A."""
+    y_true = np.asarray(y_true).astype(int)
+    pa = np.asarray(pred_a).astype(int)
+    pb = np.asarray(pred_b).astype(int)
+    k = n_classes
+    n = len(y_true)
+    rng = np.random.default_rng(seed)
+
+    def macro(cm):
+        return _metrics_from_cm(cm)[2].mean()
+
+    cm_a = np.bincount(y_true * k + pa, minlength=k * k).reshape(k, k)
+    cm_b = np.bincount(y_true * k + pb, minlength=k * k).reshape(k, k)
+    goc = macro(cm_b) - macro(cm_a)
+    diffs = []
+    for _ in range(n_boot):
+        idx = rng.integers(0, n, n)
+        ca = np.bincount(y_true[idx] * k + pa[idx], minlength=k * k).reshape(k, k)
+        cb = np.bincount(y_true[idx] * k + pb[idx], minlength=k * k).reshape(k, k)
+        diffs.append(macro(cb) - macro(ca))
+    lo, hi = 100 * alpha / 2, 100 * (1 - alpha / 2)
+    return {"hieu_macro_f1": goc,
+            "ci_thap": np.percentile(diffs, lo),
+            "ci_cao": np.percentile(diffs, hi)}
+
+
+def mcnemar_exact(y_true, pred_a, pred_b):
+    """Kiem dinh McNemar chinh xac tren cac mau hai mo hinh bat dong ve dung sai."""
+    y_true = np.asarray(y_true).astype(int)
+    dung_a = np.asarray(pred_a).astype(int) == y_true
+    dung_b = np.asarray(pred_b).astype(int) == y_true
+    a_dung_b_sai = int((dung_a & ~dung_b).sum())
+    a_sai_b_dung = int((~dung_a & dung_b).sum())
+    tong = a_dung_b_sai + a_sai_b_dung
+    p = 1.0 if tong == 0 else float(stats.binomtest(min(a_dung_b_sai, a_sai_b_dung), tong, 0.5).pvalue)
+    return {"a_dung_b_sai": a_dung_b_sai, "a_sai_b_dung": a_sai_b_dung, "p": p}   

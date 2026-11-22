@@ -1,0 +1,4 @@
+mo_hinh,hieu_macro_f1_so_voi_da_khoa,ci_thap,ci_cao,da_khoa_dung_kia_sai,da_khoa_sai_kia_dung,p_mcnemar
+hgbT_N2_under,-0.0009,-0.004,0.0014,21,7,0.013
+random_forest_tuned,-0.0066,-0.0239,0.001,21,8,0.024
+xgb_default,-0.0013,-0.0039,0.0011,18,4,0.004

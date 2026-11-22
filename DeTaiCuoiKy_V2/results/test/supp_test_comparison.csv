@@ -1,0 +1,5 @@
+mo_hinh,macro_f1,ci_thap,ci_cao,balanced_acc,mcc,accuracy,so_loi,loi_metasploit,loi_fin
+hgb_N1_balanced_da_khoa,0.9951,0.9918,0.9975,0.9957,0.9967,0.9986,32,0,0
+hgbT_N2_under,0.9943,0.9904,0.9969,0.993,0.9952,0.998,46,0,0
+random_forest_tuned,0.9886,0.9713,0.9964,0.9917,0.9953,0.9981,45,0,0
+xgb_default,0.9938,0.9903,0.9965,0.9926,0.9952,0.998,46,0,0
