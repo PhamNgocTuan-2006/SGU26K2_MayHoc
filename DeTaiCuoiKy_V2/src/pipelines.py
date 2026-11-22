@@ -46,3 +46,25 @@ def get_final():
     return HistGradientBoostingClassifier(
         class_weight="balanced", early_stopping=False, random_state=RANDOM_STATE
     )
+def get_finalists():
+    # cac mo hinh bo sung de doi chieu tren test sau khi da khoa mo hinh cuoi
+    from collections import Counter
+    from imblearn.pipeline import Pipeline as ImbPipeline
+    from imblearn.under_sampling import RandomUnderSampler
+    from sklearn.ensemble import HistGradientBoostingClassifier, RandomForestClassifier
+
+    def under_cap(y):
+        return {k: 5000 for k, v in Counter(y).items() if v > 5000}
+
+    return {
+        "hgbT_N2_under": ImbPipeline([
+            ("us", RandomUnderSampler(sampling_strategy=under_cap, random_state=RANDOM_STATE)),
+            ("clf", HistGradientBoostingClassifier(
+                learning_rate=0.03, l2_regularization=0.1, min_samples_leaf=2,
+                early_stopping=False, random_state=RANDOM_STATE)),
+        ]),
+        "random_forest_tuned": RandomForestClassifier(
+            n_estimators=100, max_depth=10, max_features="log2",
+            n_jobs=-1, random_state=RANDOM_STATE),
+        "xgb_default": get_xgb()["xgb_default"],
+    }
