@@ -1,0 +1,5 @@
+mo_hinh,thingspeak_thanh_arp,arp_thanh_thingspeak,tong_hai_chieu,tong_loi
+hgb_N1_balanced_da_khoa,8,11,19,32
+hgbT_N2_under,20,15,35,46
+random_forest_tuned,17,16,33,45
+xgb_default,19,13,32,46
