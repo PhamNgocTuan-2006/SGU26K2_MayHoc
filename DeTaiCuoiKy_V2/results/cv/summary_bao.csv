@@ -1,7 +1,8 @@
 Ten mo hinh,Chien luoc xu ly mat can bang,Macro-F1 (TB),Macro-F1 (std),Balanced Acc (TB),Recall c4 Metasploit_SSH,Recall c5 NMAP_FIN_SCAN,Recall c11 Wipro_bulb,Fit time (s)
-hgbT_N2_under,N2_under,0.9688,0.0126,0.9565,0.76,0.82,0.9429,10.2175
-hgbT_N0,N0: khong xu ly,0.9601,0.0176,0.9557,0.76,0.82,0.9486,11.2196
-hgbT_N4_under_smote,N4_under_smote,0.9596,0.0165,0.9596,0.7933,0.82,0.9486,12.9691
-hgbT_N3_smote,N3_smote,0.9577,0.0122,0.9589,0.7933,0.82,0.9486,21.6057
-hgbT_N1_balanced,N1: class_weight=balanced,0.9516,0.0224,0.9567,0.76,0.82,0.9486,35.6963
-mlp_tuned,Khong xu ly,0.9275,0.0414,0.9187,0.7267,0.66,0.8457,46.2084
+hgbT_N2_under,N2_under,0.9688,0.0126,0.9565,0.76,0.82,0.9429,3.7172
+xgb_default,Khong xu ly,0.9614,0.0179,0.9573,0.76,0.82,0.9657,12.4402
+hgbT_N0,N0: khong xu ly,0.9601,0.0176,0.9557,0.76,0.82,0.9486,7.179
+hgbT_N4_under_smote,N4_under_smote,0.9596,0.0165,0.9596,0.7933,0.82,0.9486,5.1183
+hgbT_N3_smote,N3_smote,0.9577,0.0122,0.9589,0.7933,0.82,0.9486,8.7866
+hgbT_N1_balanced,N1: class_weight=balanced,0.9516,0.0224,0.9567,0.76,0.82,0.9486,14.3636
+mlp_tuned,Khong xu ly,0.9275,0.0414,0.9187,0.7267,0.66,0.8457,16.8421
